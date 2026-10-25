@@ -352,7 +352,7 @@ func resolveMetadata(metadata *C.Metadata) (proxy C.Proxy, rule C.Rule, err erro
 		FindProcess: func() {
 			if attemptProcessLookup {
 				attemptProcessLookup = false
-				if !features.Android {
+				if !features.Android && runtime.GOOS != "openharmony" {
 					// normal check for process
 					uid, path, err := process.FindProcessName(metadata.NetWork.String(), metadata.SrcIP, int(metadata.SrcPort))
 					if err != nil {
